@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>TITOLONE</h1>
+  <p>{{text}}</p>
+  <button (click)="increment()" [disabled]="disabled">Incrementa</button>
+  <p>{{num}}</p>
+  <input placeholder="Insert text" [ngModel]="text" (change)="changeText($event)">
+  <button (click)="addName()" [disabled]="!text">aggiungi nome</button>
+  <br/>
+  <app-box *ngFor="let name of names" [title]="name.name" (deleteEvent)="deleteName(name.id)">
+    {{name.name}}
+    <button (click)="deleteName(name.id)">X</button>
+  </app-box>
+  <app-box title="SIUM!"></app-box>
+  <pre>{{JSON.stringify(names, null, 2)}}</pre>
+
+  <div app-login userName="User" password="Password"></div>
+
+
+</div>

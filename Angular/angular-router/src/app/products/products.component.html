@@ -1,0 +1,23 @@
+<div>
+  <h2 #mioInputH2>Ciao</h2>
+  <ul>
+    <li *ngFor="let prodotto of productList">
+      {{prodotto.id}}
+      {{prodotto.name}}
+      {{prodotto.description}}
+      <a [routerLink]="['/products',prodotto.id]">Dettagli</a>
+      <button (click)="deleteProduct(prodotto.id)">Elimina</button>
+    </li>
+  </ul>
+  <input [(ngModel)] = "name" placeholder="Nome prodotto">
+  <input [(ngModel)] = "description" placeholder="Descrizione prodotto">
+  <button (click)="addProduct()">Aggiungi</button>
+
+  <!--<br><br>
+  <input #mioInput placeholder="ciao">
+  <button (click)="changeH2(mioInputH2)">H2</button>
+  <button (click)="changeH2Input(mioInput)">Input</button>
+  <button (click)="changeInputRefChild()">InputRef</button>
+  <button (click)="changeH2RefChild()">H2Ref</button>-->
+
+</div>

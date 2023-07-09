@@ -1,0 +1,12 @@
+<h2>Prodotti</h2>
+<div>
+  <ul>
+    <li *ngFor="let product of data">
+      <app-card [id]="product.id"
+                [name]="product.title"
+                [desc]="product.description"
+                [img]="product.thumbnail">
+      </app-card>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,12 @@
+<div>
+  <h1>
+    Titolo1
+  </h1>
+  <button (click)="toggleVisible()">
+    {{visible ? "Hide" : "Show"}}
+  </button>
+    <app-box *ngIf="visible" titolo="ciao"></app-box>
+
+  <h5 applicaColore color="yellow">Frase con sfondo</h5>
+
+</div>
