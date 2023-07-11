@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
 import {Product} from "../module/Product";
 import {HttpClient} from "@angular/common/http";
+import {ProductsService} from "../products.service";
 
 @Component({
   selector: 'app-product',
@@ -16,7 +17,7 @@ export class ProductComponent implements  OnDestroy{
   subscription?: Subscription
   httpSubscription?: Subscription
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private prodottoService: ProductsService) {
     const {id} = route.snapshot.params;
     this.id = id;
     this.fetchData(id)
@@ -34,8 +35,14 @@ export class ProductComponent implements  OnDestroy{
     this.httpSubscription = this.http.get<Product>(`https://dummyjson.com/products/${id}`)
       .subscribe(res => {
         this.prodotto = res;
+        this.getPersonById(res.id)
         console.log("fetch")
       })
+  }
+
+  getPersonById(id: number){
+    const prodotto = this.prodottoService.getProductById(id)
+    console.log(prodotto?.title)
   }
 
   ngOnDestroy() {

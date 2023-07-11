@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {Product, ProductsRoot} from "./module/Product";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class ProductsService{
 
   public observable: Observable<Product[]>
   private products?: Product[]
@@ -32,5 +32,11 @@ export class ProductsService {
           })
       }
     })
+  }
+
+  getProductById(id: number){
+    return this.products?.find((obj) => {
+      return obj.id === id;
+    });
   }
 }
