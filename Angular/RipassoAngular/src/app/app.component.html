@@ -1,0 +1,4 @@
+<p>App works</p>
+<button [disabled]="stato" (click)="inc()">Incrementa</button>
+<app-card [count]="count" title="Card1" (dalPadre)="fromChild($event)"/>
+<app-card [count]="count*count" title="Card2" (dalPadre)="fromChild($event)"/>

@@ -20,13 +20,13 @@ export class ProductComponent implements  OnDestroy{
   constructor(private route: ActivatedRoute, private http: HttpClient, private prodottoService: ProductsService) {
     const {id} = route.snapshot.params;
     this.id = id;
-    this.fetchData(id)
+    this.getPersonById(id)
 
     this.subscription = route.params.subscribe(params=>{
       const {id} = route.snapshot.params;
       this.id = id;
 
-      this.fetchData(id)
+      this.getPersonById(id)
     })
   }
 
@@ -41,8 +41,8 @@ export class ProductComponent implements  OnDestroy{
   }
 
   getPersonById(id: number){
-    const prodotto = this.prodottoService.getProductById(id)
-    console.log(prodotto?.title)
+    this.prodotto = this.prodottoService.getProductById(id)
+    console.log(this.prodotto?.title)
   }
 
   ngOnDestroy() {
