@@ -10,6 +10,7 @@ export class ProductsService{
 
   public observable: Observable<Product[]>
   private products?: Product[]
+  private cart?: Product[] = []
 
   constructor(private http: HttpClient) {
     this.observable = new Observable(subscriber => {
@@ -28,10 +29,35 @@ export class ProductsService{
     })
   }
 
-  getProductById(id: number){
-    console.log(id, this.products)
-    return this.products?.find((obj) => {
-      return obj.id === id;
+  getProductById(idF: number){
+    return this.products?.find(el => {
+      return el.id == idF
+    })
+  }
+
+  getTotalCart(){
+    let sum = 0;
+
+    this.cart?.forEach(item => {
+      sum += item.price;
     });
+
+    return sum
+  }
+
+  addToCart(idF: number){
+    const product = this.products?.find(el => {
+      return el.id == idF
+    })
+
+    console.log(product)
+
+    this.cart?.push(product!)
+
+    console.log(this.cart)
+  }
+
+  getCart(){
+    return this.cart
   }
 }

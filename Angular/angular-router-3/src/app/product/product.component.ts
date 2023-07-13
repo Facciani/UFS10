@@ -15,7 +15,7 @@ export class ProductComponent implements  OnDestroy{
   public id: number
   public prodotto?: Product
   subscription?: Subscription
-  httpSubscription?: Subscription
+  //httpSubscription?: Subscription
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private prodottoService: ProductsService) {
     const {id} = route.snapshot.params;
@@ -30,23 +30,18 @@ export class ProductComponent implements  OnDestroy{
     })
   }
 
-  fetchData(id: number) {
-    this.httpSubscription?.unsubscribe()
-    this.httpSubscription = this.http.get<Product>(`https://dummyjson.com/products/${id}`)
-      .subscribe(res => {
-        this.prodotto = res;
-        this.getPersonById(res.id)
-        console.log("fetch")
-      })
-  }
-
   getPersonById(id: number){
     this.prodotto = this.prodottoService.getProductById(id)
-    console.log(this.prodotto?.title)
+    //console.log(this.prodotto?.title)
+  }
+
+  addToCard(id?: number){
+    this.prodottoService.addToCart(id!)
+
   }
 
   ngOnDestroy() {
-    this.httpSubscription?.unsubscribe()
+    //this.httpSubscription?.unsubscribe()
     console.log("Pagina distrutta")
   }
 }
